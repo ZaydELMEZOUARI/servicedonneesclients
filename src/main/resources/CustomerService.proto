@@ -1,0 +1,37 @@
+syntax ="proto3";
+option java_package="net.XVIII.customerdataservice.stub";
+
+service CustomerService {
+  rpc GetAllCustomers(GetAllCustomersRequest) returns (GetCustomersResponse);
+  rpc GetCustomerById(GetCustomersByIdRequest) returns (GetCustomersByIdResponse);
+  rpc SaveCustomer(SaveCustomerRequest) returns (SaveCustomerResponse);
+}
+message GetAllCustomersRequest{}
+message GetCustomersResponse{
+  repeated Customer customers = 1;
+}
+
+message Customer {
+  int64 id=1;
+  string name=2;
+  string email=3;
+}
+message GetCustomersByIdRequest{
+  int64 customerId=1;
+}
+message GetCustomersByIdResponse{
+  Customer customer=1;
+}
+
+message SaveCustomerRequest{
+  CustomerRequest customer=1;
+}
+message SaveCustomerResponse{
+  Customer customer=1;
+}
+
+message CustomerRequest {
+  string name=1;
+  string email=2;
+}
+
